@@ -31,6 +31,18 @@ fdir@^6.0.1:
   resolved "https://registry.npmjs.org/fdir/-/fdir-6.0.1.tgz#1edca6c0295d072802e2c67a2f4fbf941cd32af5"
   integrity sha512-bdrUUb0eYQrPRlaAtlSRoLs7sp6yKEwbMQuUgwvi/14TnaqhM/deSZUrC5ic+yjm5nEPPWE61oWpTTxQFQMmLA==
 
+lowdb@^6.0.1:
+  version "6.0.1"
+  resolved "https://registry.npmjs.org/lowdb/-/lowdb-6.0.1.tgz#2c84ae74340fa81ace9c8f17b2fd7fbf9544e7d4"
+  integrity sha512-1ktuKYLlQzAWwl4/PQkIr8JzNXgcTM6rAhpXaQ6BR+VwI98Q8ZwMFhBOn9u0ldcW3K/WWzhYpS3xyGTshgVGzA==
+  dependencies:
+    steno "^3.0.0"
+
+steno@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.npmjs.org/steno/-/steno-3.0.0.tgz#212a11e8ef3646b610efc8953842f556fd0df28f"
+  integrity sha512-uZtn7Ht9yXLiYgOsmo8btj4+f7VxyYheMt8g6F1ANjyqByQXEE2Gygjgenp3otHH1TlHsS4JAaRGv5wJ1wvMNw==
+
 string-similarity@^4.0.4:
   version "4.0.4"
   resolved "https://registry.npmjs.org/string-similarity/-/string-similarity-4.0.4.tgz#42d01ab0b34660ea8a018da8f56a3309bb8b2a5b"

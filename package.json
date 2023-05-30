@@ -8,6 +8,7 @@
     "cli-table": "^0.3.11",
     "fast-levenshtein": "^3.0.0",
     "fdir": "^6.0.1",
+    "lowdb": "^6.0.1",
     "string-similarity": "^4.0.4",
     "xxhash-addon": "^2.0.1"
   }
