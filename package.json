@@ -1,14 +1,17 @@
 {
-  "name": "gpt-folderz",
+  "name": "dirman2",
   "type": "module",
-  "version": "1.0.0",
+  "version": "0.0.2",
   "main": "index.js",
-  "license": "MIT",
+  "license": "The Unlicense",
   "dependencies": {
     "cli-table": "^0.3.11",
+    "columnify": "^1.6.0",
     "fast-levenshtein": "^3.0.0",
     "fdir": "^6.0.1",
     "lowdb": "^6.0.1",
+    "sqlite": "^4.2.1",
+    "sqlite3": "^5.1.6",
     "string-similarity": "^4.0.4",
     "xxhash-addon": "^2.0.1"
   }
