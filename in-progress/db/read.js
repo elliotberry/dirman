@@ -1,5 +1,5 @@
 import {Readable} from 'node:stream';
-import dbFactory from './stream-to-lowdb.js';
+import dbFactory from '../../lib/stream-to-lowdb.js';
 import fs from 'fs';
 import path from 'path';
 

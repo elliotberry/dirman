@@ -260,6 +260,11 @@ fs-minipass@^2.0.0:
   dependencies:
     minipass "^3.0.0"
 
+fs-xattr@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.npmjs.org/fs-xattr/-/fs-xattr-0.4.0.tgz#30797399631287b740994a0bfab7822295e5f482"
+  integrity sha512-Lw90zx483YTGiHfR67IPtrbrZ+yBr1/W98v/iyTeSkUbixg/wrHfX5x9oMUOnirC5P7SZ5HlrpnIRMMqt8Ej0A==
+
 fs.realpath@^1.0.0:
   version "1.0.0"
   resolved "https://registry.npmjs.org/fs.realpath/-/fs.realpath-1.0.0.tgz#1504ad2523158caa40db4a2787cb01411994ea4f"
@@ -394,6 +399,11 @@ is-lambda@^1.0.1:
   version "1.0.1"
   resolved "https://registry.npmjs.org/is-lambda/-/is-lambda-1.0.1.tgz#3d9877899e6a53efc0160504cde15f82e6f061d5"
   integrity sha512-z7CMFGNrENq5iFB9Bqo64Xk6Y9sg+epq1myIcdHaGnbMTYOxvzsEtdYqQUylB7LxfkvgrrjP32T6Ywciio9UIQ==
+
+isbinaryfile@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.npmjs.org/isbinaryfile/-/isbinaryfile-5.0.0.tgz#034b7e54989dab8986598cbcea41f66663c65234"
+  integrity sha512-UDdnyGvMajJUWCkib7Cei/dvyJrrvo4FIrsvSFWdPpXSUorzXrDJ0S+X5Q4ZlasfPjca4yqCNNsjbCeiy8FFeg==
 
 isexe@^2.0.0:
   version "2.0.0"
