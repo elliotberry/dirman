@@ -22,6 +22,13 @@
     semver "^7.3.5"
     tar "^6.1.11"
 
+"@mattduffy/exiftool@^1.5.0":
+  version "1.5.0"
+  resolved "https://registry.npmjs.org/@mattduffy/exiftool/-/exiftool-1.5.0.tgz#3aa38279f7ce94a4706d6380a717bb527beaff47"
+  integrity sha512-uCyZouBbam4U0cXEtV9MCc9Rl91Ymb0EYH7RQ3ZW2mj5ulXz8ZMjCjFnTHbts13PnpeTdlMQZn3TDC48hd4C6g==
+  dependencies:
+    debug "4.3.4"
+
 "@npmcli/fs@^1.0.0":
   version "1.1.1"
   resolved "https://registry.npmjs.org/@npmcli/fs/-/fs-1.1.1.tgz#72f719fe935e687c56a4faecf3c03d06ba593257"
@@ -185,7 +192,7 @@ console-control-strings@^1.0.0, console-control-strings@^1.1.0:
   resolved "https://registry.npmjs.org/console-control-strings/-/console-control-strings-1.1.0.tgz#3d7cf4464db6446ea644bf4b39507f9851008e8e"
   integrity sha512-ty/fTekppD2fIwRvnZAVdeOiGd1c7YXEixbgJTNzqcxJWKQnjJ/V1bNEEE6hygpM3WjwHFUVK6HTjWSzV4a8sQ==
 
-debug@4, debug@^4.1.0, debug@^4.3.3:
+debug@4, debug@4.3.4, debug@^4.1.0, debug@^4.3.3:
   version "4.3.4"
   resolved "https://registry.npmjs.org/debug/-/debug-4.3.4.tgz#1319f6579357f2338d3337d2cdd4914bb5dcc865"
   integrity sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ==
