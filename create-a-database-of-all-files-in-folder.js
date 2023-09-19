@@ -17,7 +17,7 @@ import dbFactory from './lib/stream-to-lowdb.js';
  * @returns {Promise<void>}
  */
 async function main() {
-  let dir = '/Users/eberry/Desktop/working-files-to-backup/__structured-documents-organizing-2021';
+  let dir = '/Users/eberry/Documents';
   const add = await dbFactory({dir});
 
   /**

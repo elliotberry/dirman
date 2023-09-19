@@ -1,6 +1,7 @@
 import crawlOneDir from './lib/crawl-one-folder.js';
 import {groupByExtension} from './lib/group-by-extension.js';
 import {defaultCrawlOptions} from './lib/crawl-operations.js'
+import yargs from 'yargs/yargs';
 
 
 async function main() {

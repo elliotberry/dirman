@@ -1,11 +1,16 @@
-import {crawlTwoDirs, displayAsTable} from './lib/crawl-two-folders-and-display-files-different.js';
+import {crawlTwoDirs} from './lib/crawl-two-folders-and-display-files-different.js';
+import displayAsTable from './lib/display-folder-diff.js';
+import yargs from 'yargs/yargs';
 
+//var argv = yargs(process.argv.slice(2)).scriptName('move').usage('$0 <source> <destination>').help().argv;
 
-async function main() {
+//const source = argv._[0];
+//onst destination = argv._[1];
 
-  let obj = await crawlTwoDirs('/Volumes/2021-apr-staging/archive-time/full-archives/art', '/Users/eberry/Desktop/working-files-to-backup/art');
+async function main(source, destination) {
+  let obj = await crawlTwoDirs(source, destination);
   displayAsTable(obj);
- 
 }
 
-main();
+
+export default main;

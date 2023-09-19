@@ -44,11 +44,7 @@ class FilePropertiesReader {
    * @returns {Promise<Object>} - An object containing the properties of the file.
    */
   async read(filePath) {
-    let returnObj = {};
-    returnObj.absolutePath = filePath;
-    returnObj.ext = path.extname(filePath);
-    returnObj.relativePath = filePath.split(this.parentDir)[1];
-    returnObj.basename = path.basename(filePath);
+   let thisFile = new File(filePath, this.parentDir);
     for await (const op of this.arrayOfOperations) {
       returnObj[op.keyName] = await op.fn(returnObj.absolutePath);
     }
