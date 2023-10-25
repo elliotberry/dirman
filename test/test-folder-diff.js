@@ -1,76 +1,88 @@
 import fs from 'fs';
 import path from 'path';
-import filesNotInSecondFolder from '../output-list-of-files-not-in-second-folder.js';
-const mainFolder = path.join(process.cwd(), 'testFolder');
+import folderDiff from '../output-list-of-files-not-in-second-folder.js';
+import {dirname} from 'path';
+import {fileURLToPath} from 'url';
+import chalk from 'chalk';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const mainFolder = path.join(__dirname, 'testFolder');
 const folderA = path.join(mainFolder, 'folderA');
 const folderB = path.join(mainFolder, 'folderB');
 
+//this part is important for the tests to run
+var testLog = msg => console.log(chalk.bgBlue.black(msg));
+
+global.konsole = {
+  log: msg => {
+    console.log(chalk.blue(msg));
+  },
+  error: msg => {
+    console.log(chalk.red(msg));
+  },
+};
+
 // Create folders
 async function createFolders() {
-  if (!fs.existsSync(mainFolder)) {
-    fs.mkdirSync(mainFolder);
-    fs.mkdirSync(folderA);
-    fs.mkdirSync(folderB);
-  }
+  await fs.promises.mkdir(mainFolder);
+  await fs.promises.mkdir(folderA);
+  await fs.promises.mkdir(folderB);
 }
-
 // Generate random files
 async function generateFiles() {
-  const totalFiles = 5;
-  for (let i = 0; i < totalFiles; i++) {
+  // Randomly decide if the file should be in both folders or just one
+  const totalFiles = 10;
+  const folderAFiles = [];
+  const folderBFiles = [];
+  let iterationArr = Array.from({length: totalFiles}, (_, i) => i + 1);
+  let lastFileToEdit = '';
+  for await (let i of iterationArr) {
     const fileName = `file${i}.txt`;
     const content = Math.random().toString(36).substring(2);
-    const folderAFiles = [];
-    const folderBFiles = [];
-    // Randomly decide if the file should be in both folders or just one
-    const randomChoice = Math.floor(Math.random() * 3);
-    if (randomChoice === 0) {
-      fs.writeFileSync(path.join(folderA, fileName), content);
+    if (i <= 3) {
+      await fs.promises.writeFile(path.join(folderA, fileName), content);
       folderAFiles.push(fileName);
-    } else if (randomChoice === 1) {
-      fs.writeFileSync(path.join(folderB, fileName), content);
+    } else if (i > 3 && i <= 6) {
+      await fs.promises.writeFile(path.join(folderB, fileName), content);
       folderBFiles.push(fileName);
+    } else if (i > 6 && i <= 9) {
+      await fs.promises.writeFile(path.join(folderA, fileName), content);
+      await fs.promises.writeFile(path.join(folderB, fileName), content);
+      folderAFiles.push(fileName);
+      folderBFiles.push(fileName);
+      lastFileToEdit = fileName;
     } else {
-      fs.writeFileSync(path.join(folderA, fileName), content);
-      fs.writeFileSync(path.join(folderB, fileName), content);
-      folderAFiles.push(fileName);
-      folderBFiles.push(fileName);
+      const content1 = Math.random().toString(36).substring(2);
+      await fs.promises.appendFile(path.join(folderB, lastFileToEdit), content1);
     }
   }
-  console.log(`Files generated: ${totalFiles}`);
+
+  // testLog a tree of the generated files
+  testLog('Generated files:');
+  testLog(mainFolder);
+  testLog('├──', folderA);
+  testLog('│   ├──', (await fs.promises.readdir(folderA)).join('\n│   ├── '));
+  testLog('└──', folderB);
+  testLog('    ├──', (await fs.promises.readdir(folderB)).join('\n    ├── '));
 }
 
 // Delete folder recursively
-function deleteFolderRecursive(dirPath) {
+async function deleteFolderRecursive(dirPath) {
   if (fs.existsSync(dirPath)) {
-    fs.readdirSync(dirPath).forEach(file => {
-      const curPath = path.join(dirPath, file);
-      if (fs.lstatSync(curPath).isDirectory()) {
-        deleteFolderRecursive(curPath);
-      } else {
-        fs.unlinkSync(curPath);
-      }
-    });
-    fs.rmdirSync(dirPath);
-  }
-  console.log(`Folder deleted: ${dirPath}`);
-}
-
-// Delete folder if it exists
-function deleteIfExists(dirPath) {
-  if (fs.existsSync(dirPath)) {
-    deleteFolderRecursive(dirPath);
+    await fs.promises.rm(dirPath, {recursive: true});
+    testLog(`Folder deleted: ${dirPath}`);
   }
 }
 
 async function main() {
-  await deleteIfExists(mainFolder);
-  createFolders();
-  generateFiles();
+  await deleteFolderRecursive(mainFolder);
+  await createFolders();
+  await generateFiles();
 
-  await filesNotInSecondFolder(folderA, folderB);
+  await folderDiff(folderA, folderB);
 
   // Uncomment the line below to delete the testFolder and its contents
-  deleteFolderRecursive(mainFolder);
+  //deleteFolderRecursive(mainFolder);
 }
+export {createFolderOfRandomShit}
 main();

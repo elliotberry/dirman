@@ -5,7 +5,7 @@
 *.exe
 *.o
 *.so
-
+test/testFolder
 # Logs and databases
 *.log
 
