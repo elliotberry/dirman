@@ -58,7 +58,7 @@ const main = async () => {
       }
     },
   };
-  global.konsole.log(`log level: ${argv.l}`);
+  console.log(`log level: ${argv.l}`);
   await folderDiff(argv.folder1, argv.folder2);
 };
 
