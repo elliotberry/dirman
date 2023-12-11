@@ -1,47 +1,19 @@
 import display from './lib/display/display-simple-list.js';
+
 import crawlOneDir from './lib/crawl-one-folder.js';
 import {defaultCompareOptions, compareDirectories} from './lib/compare.js';
+
 import {defaultCrawlOptions} from './lib/crawl-operations/crawl-operations.js';
-import yargs from 'yargs';
 
-const argv = yargs
-  .option('dir1', {
-    describe: 'First directory to compare',
-    demandOption: true,
-    type: 'string'
-  })
-  .option('dir2', {
-    describe: 'Second directory to compare',
-    demandOption: true,
-    type: 'string'
-  })
-  .option('recursive', {
-    describe: 'Whether to crawl directories recursively',
-    type: 'boolean',
-    default: false
-  })
-  .option('ignoreCase', {
-    describe: 'Whether to ignore case when comparing file names',
-    type: 'boolean',
-    default: false
-  })
-  .help()
-  .alias('help', 'h')
-  .argv;
 
-async function main() {
-  const { dir1, dir2, recursive, ignoreCase } = argv;
-
-  const crawlOptions = {
-    ...defaultCrawlOptions,
-    recursive
-  };
-
-  const compareOptions = {
-    ...defaultCompareOptions,
-    ignoreCase
-  };
-
+async function main(dir1, dir2, crawlOptions, compareOptions) {
+ 
+  if (!crawlOptions) {
+    crawlOptions = defaultCrawlOptions;
+  }
+  if (!compareOptions) {
+    compareOptions = defaultCompareOptions;
+  }
   let one = await crawlOneDir(dir1, crawlOptions);
   console.log(`done crawling ${dir1}`);
   let two = await crawlOneDir(dir2, crawlOptions);
@@ -52,4 +24,9 @@ async function main() {
   display(compared);
 }
 
-export default main;
+let args = process.argv.slice(2);
+if (args.length < 2) {
+  console.log('usage: node output-list-of-files-not-in-second-folder.js <dir1> <dir2>');
+  process.exit(1);
+}
+main(args[0], args[1]);
