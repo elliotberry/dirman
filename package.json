@@ -5,7 +5,7 @@
   "description": "A CLI tool for managing directories of files",
   "main": "index.js",
   "scripts": {
-    "test-diff": "node test/test-folder-diff.js"
+    "test": "node ./test/test.js"
   },
   "license": "The Unlicense",
   "dependencies": {
@@ -17,10 +17,13 @@
     "fs-xattr": "^0.4.0",
     "isbinaryfile": "^5.0.0",
     "lowdb": "^6.0.1",
-
     "sqlite3": "^5.1.6",
     "string-similarity": "^4.0.4",
     "xxhash-addon": "^2.0.1",
     "yargs": "^17.7.2"
+  },
+  "devDependencies": {
+    "chai": "^4.3.10",
+    "mocha": "^10.2.0"
   }
 }
