@@ -1,16 +1,20 @@
-import {promises as fs} from 'fs';
 
-import {assert} from 'chai';
 import __dirname from '../lib/__dirname.js';
-import {describe, it, before, after} from 'mocha';
-
-import {execa} from './execa.js';
-import {createTestData, tryToDeleteFolder, folderAPath, folderBPath} from './test-functions.js';
+import folderDiff from '../lib/folder-diff.js';
+import {createTestData, tryToDeleteFolder} from './test-functions.js';
 
 const main = async () => {
-  await createTestData();
-  let res = await execa(`node cli.js folder-diff ${folderAPath} ${folderBPath} --format json`);
-  console.log(res);
- // await tryToDeleteFolder();
+  let { folderAPath, folderBPath, commonFiles, uniqueFilesA, uniqueFilesB } = await createTestData();
+  console.log(folderAPath);
+  console.log(folderBPath);
+  
+  let comparedInfo = await folderDiff(folderAPath, folderBPath);
+  let r = comparedInfo.isNotInDir2.map(item => {
+    return item.relativePath;
+  })
+  console.log(r);
+  console.log("------");
+  console.log(uniqueFilesA.map(item => item.name));
+ await tryToDeleteFolder();
 };
 main()
