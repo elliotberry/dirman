@@ -18,10 +18,10 @@ String.prototype.del = function(s) {
 async function createFolderWithFiles(folderName, commonFiles, uniqueFiles) {
     await fs.mkdir(folderName, { recursive: true });
     for (const file of commonFiles) {
-        await fs.writeFile(`${folderName}/${file.name}`, file.content);
+        await fs.writeFile(`${folderName}/common-${file.name}`, file.content);
     }
     for (const file of uniqueFiles) {
-        await fs.writeFile(`${folderName}/${file.name}`, file.content);
+        await fs.writeFile(`${folderName}/unique-${file.name}`, file.content);
     }
 }
 async function tryToDeleteFolder() {
@@ -37,13 +37,13 @@ async function tryToDeleteFolder() {
 const createTestData = async () => {
     await tryToDeleteFolder(testParentFolder);
     await fs.mkdir(testParentFolder, { recursive: true });
-    const commonFiles = Array.from({ length: 5 }, createRandomFile);
+    const commonFiles = Array.from({ length: 5 }, createRandomFile)
     const uniqueFilesA = Array.from({ length: 5 }, createRandomFile);
     const uniqueFilesB = Array.from({ length: 5 }, createRandomFile);
 
     await createFolderWithFiles(folderAPath, commonFiles, uniqueFilesA);
     await createFolderWithFiles(folderBPath, commonFiles, uniqueFilesB);
 
-    return { folderAPath, folderBPath, commonFiles, uniqueFilesA, uniqueFilesB };
+    return { testParentFolder, folderAPath, folderBPath, commonFiles, uniqueFilesA, uniqueFilesB };
 }
 export { tryToDeleteFolder, createTestData, testParentFolder, folderAPath, folderBPath, createRandomFileName, createRandomContent };

@@ -39,7 +39,9 @@
     "plugins": [
       "prettier",
       "@stylistic/js",
-      "unicorn"
+      "unicorn",
+      "simple-import-sort",
+      "perfectionist"
     ],
     "parserOptions": {
       "ecmaVersion": "latest",
@@ -48,7 +50,8 @@
     "extends": [
       "eslint:recommended",
       "plugin:prettier/recommended",
-      "plugin:unicorn/recommended"
+      "plugin:unicorn/recommended",
+      "plugin:perfectionist/recommended-natural"
     ],
     "env": {
       "es2021": true,
