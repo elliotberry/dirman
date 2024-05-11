@@ -1,6 +1,6 @@
 import { exec } from "node:child_process"
 
-export let execa = (command) => {
+export const execa = (command) => {
   return new Promise((resolve, reject) => {
     exec(command, (error, stdout, stderr) => {
       if (error) {

@@ -2,8 +2,9 @@
 import chalk from "chalk"
 import yargs from "yargs"
 import { hideBin } from "yargs/helpers"
-import notInFolder2 from "./lib/output/not-in-folder-2.js"
+
 import folderDiff from "./lib/folder-diff.js"
+import notInFolder2 from "./lib/output/not-in-folder-2.js"
 
 const main = async () => {
   try {

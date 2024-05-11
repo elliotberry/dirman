@@ -1,10 +1,14 @@
-import __dirname from "../lib/__dirname.js"
+
 import folderDiff from "../lib/folder-diff.js"
-import { execa } from "./execa.js"
-import { createTestData, tryToDeleteFolder } from "./test-functions.js"
+import {
+  createTestData,
+  testParentFolder,
+  tryToDeleteFolder
+} from "./test-functions.js"
 
 const main = async () => {
-  let {
+ 
+   let {
     commonFiles,
     folderAPath,
     folderBPath,
@@ -13,15 +17,15 @@ const main = async () => {
     uniqueFilesB
   } = await createTestData()
 
-  let {allFiles} = await folderDiff(folderAPath, folderBPath)
-  let folder1Files = allFiles.filter(item => item.parentDir === folderAPath)
-  let notInFolder2 = folder1Files.filter(item => item.match === false)
+  let { allFiles } = await folderDiff(folderAPath, folderBPath)
+  let folder1Files = allFiles.filter((item) => item.parentDir === folderAPath)
+  let notInFolder2 = folder1Files.filter((item) => item.match === false)
   //const matches = comparedInfo.filter(item => item.match === true);
   console.log("------")
   console.log("notInFolder2")
-  console.log(notInFolder2.map(item => item.baseName).join("\n"));
+  console.log(notInFolder2.map((item) => item.baseName).join("\n"))
   console.log("------")
   // console.log(uniqueFilesA.map(item => item.name));
-  //await tryToDeleteFolder();
+  //await tryToDeleteFolder(); */
 }
 main()

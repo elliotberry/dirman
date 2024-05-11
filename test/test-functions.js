@@ -16,6 +16,7 @@ const createRandomFile = () => {
 String.prototype.del = function (s) {
   return this.split(s).join("")
 }
+
 async function createFolderWithFiles(folderName, commonFiles, uniqueFiles) {
   await fs.mkdir(folderName, { recursive: true })
   for (const file of commonFiles) {
@@ -25,6 +26,7 @@ async function createFolderWithFiles(folderName, commonFiles, uniqueFiles) {
     await fs.writeFile(`${folderName}/unique-${file.name}`, file.content)
   }
 }
+
 async function tryToDeleteFolder() {
   //delete test if exists
   try {
