@@ -1,4 +1,6 @@
 # dirman
+![Static Badge](https://img.shields.io/badge/technically_passes_as_software-blue)
+
 ![](./dirman.jpg)
 
 **dirman** is a command-line tool designed to help you quickly identify which folders exist in one directory but not the other. That's it.
