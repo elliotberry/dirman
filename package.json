@@ -1,12 +1,18 @@
 {
   "name": "dirman",
   "type": "module",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "author": "ɛʟʟɨօȶ b  =^._.^= ∫ <elliot@email.gd>",
   "description": "A CLI tool for the specfic function of showing what folders one directory has the the other does not.",
   "main": "index.js",
   "scripts": {
     "test": "node ./test/test.js"
+  },
+  "bin": {
+    "dirman": "./cli.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   },
   "license": "The Unlicense",
   "dependencies": {
