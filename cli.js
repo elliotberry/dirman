@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-import chalk from "chalk"
 import yargs from "yargs"
 import { hideBin } from "yargs/helpers"
 
@@ -23,17 +22,37 @@ const main = async () => {
         describe: "Show help",
         type: "boolean"
       })
+      .option("compare", {
+        alias: "c",
+        array: true, // Key aspect to allow multiple values
+        choices: ["hash", "size", "basename"],
+        description:
+          "Set operations for comparing files. Available options: hash, size, basename. Default: hash",
+        type: "string"
+      })
+      .default("compare", ["hash"])
+      .option("match", {
+        alias: "m",
+        choices: ["all", "any"],
+        default: "all",
+        description:
+          "Set match conditions. Available options: all, any. Default: all",
+        type: "string"
+      })
       .help("h")
       .alias("h", "help")
     const argv = await parser.parse()
+    console.log(argv)
 
     let { absoluteDirectory1, absoluteDirectory2, allFiles } = await folderDiff(
       argv._[0],
-      argv._[1]
+      argv._[1],
+      argv.compare,
+      argv.match
     )
     await notInFolder2(absoluteDirectory1, absoluteDirectory2, allFiles)
   } catch (error) {
-    console.error(chalk.red(error.message))
+    console.error(error.message)
   }
 }
 

@@ -1,7 +1,7 @@
 {
   "name": "dirman",
   "type": "module",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "author": "ɛʟʟɨօȶ b  =^._.^= ∫ <elliot@email.gd>",
   "description": "A CLI tool for the specfic function of showing what folders one directory has the the other does not.",
   "main": "index.js",
@@ -9,7 +9,8 @@
     "test": "node ./test/test.js"
   },
   "bin": {
-    "dirman": "./cli.js"
+    "dirman": "./cli.js",
+    "dman": "./cli.js"
   },
   "engines": {
     "node": ">=18.0.0"

@@ -11,9 +11,10 @@ const folderBPath = path.resolve(path.join(testParentFolder, "b"))
 const createRandomFileName = (suffix = "") =>
   `${suffix}-${randomBytes(6).toString("hex")}.txt`
 const createRandomContent = () => randomBytes(20).toString("hex")
-const createRandomFile = (suffix="") => {
+const createRandomFile = (suffix = "") => {
   return { content: createRandomContent(), name: createRandomFileName(suffix) }
 }
+
 String.prototype.del = function (s) {
   return this.split(s).join("")
 }
@@ -40,9 +41,15 @@ async function tryToDeleteFolder() {
 const createTestData = async () => {
   await tryToDeleteFolder(testParentFolder)
   await fs.mkdir(testParentFolder, { recursive: true })
-  const commonFiles = Array.from({ length: 5 }, function() { return createRandomFile("common")})
-  const uniqueFilesA = Array.from({ length: 5 }, function() { return createRandomFile("unique")})
-  const uniqueFilesB = Array.from({ length: 5 }, function() { return createRandomFile("unique")})
+  const commonFiles = Array.from({ length: 5 }, function () {
+    return createRandomFile("common")
+  })
+  const uniqueFilesA = Array.from({ length: 5 }, function () {
+    return createRandomFile("unique")
+  })
+  const uniqueFilesB = Array.from({ length: 5 }, function () {
+    return createRandomFile("unique")
+  })
 
   await createFolderWithFiles(folderAPath, commonFiles, uniqueFilesA)
   await createFolderWithFiles(folderBPath, commonFiles, uniqueFilesB)
