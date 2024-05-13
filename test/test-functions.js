@@ -8,10 +8,11 @@ const testParentFolder = path.join(__dirname, "test", "test-files")
 const folderAPath = path.resolve(path.join(testParentFolder, "a"))
 const folderBPath = path.resolve(path.join(testParentFolder, "b"))
 
-const createRandomFileName = () => randomBytes(6).toString("hex") + ".txt"
+const createRandomFileName = (suffix = "") =>
+  `${suffix}-${randomBytes(6).toString("hex")}.txt`
 const createRandomContent = () => randomBytes(20).toString("hex")
-const createRandomFile = () => {
-  return { content: createRandomContent(), name: createRandomFileName() }
+const createRandomFile = (suffix="") => {
+  return { content: createRandomContent(), name: createRandomFileName(suffix) }
 }
 String.prototype.del = function (s) {
   return this.split(s).join("")
@@ -20,10 +21,10 @@ String.prototype.del = function (s) {
 async function createFolderWithFiles(folderName, commonFiles, uniqueFiles) {
   await fs.mkdir(folderName, { recursive: true })
   for (const file of commonFiles) {
-    await fs.writeFile(`${folderName}/common-${file.name}`, file.content)
+    await fs.writeFile(`${folderName}/${file.name}`, file.content)
   }
   for (const file of uniqueFiles) {
-    await fs.writeFile(`${folderName}/unique-${file.name}`, file.content)
+    await fs.writeFile(`${folderName}/${file.name}`, file.content)
   }
 }
 
@@ -39,9 +40,9 @@ async function tryToDeleteFolder() {
 const createTestData = async () => {
   await tryToDeleteFolder(testParentFolder)
   await fs.mkdir(testParentFolder, { recursive: true })
-  const commonFiles = Array.from({ length: 5 }, createRandomFile)
-  const uniqueFilesA = Array.from({ length: 5 }, createRandomFile)
-  const uniqueFilesB = Array.from({ length: 5 }, createRandomFile)
+  const commonFiles = Array.from({ length: 5 }, function() { return createRandomFile("common")})
+  const uniqueFilesA = Array.from({ length: 5 }, function() { return createRandomFile("unique")})
+  const uniqueFilesB = Array.from({ length: 5 }, function() { return createRandomFile("unique")})
 
   await createFolderWithFiles(folderAPath, commonFiles, uniqueFilesA)
   await createFolderWithFiles(folderBPath, commonFiles, uniqueFilesB)

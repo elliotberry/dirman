@@ -10,25 +10,18 @@ const main = async () => {
   try {
     const parser = await yargs(hideBin(process.argv))
       .usage("Usage: $0 <cmd> [options]") // usage string of application.
-      .positional("folder1", {
-        describe: "First folder path",
+      .positional("directory1", {
+        describe: "First directory path",
         type: "string"
       })
-      .positional("folder2", {
-        describe: "Second folder path",
+      .positional("directory2", {
+        describe: "Second directory path",
         type: "string"
       })
       .option("h", {
         alias: "help",
         describe: "Show help",
         type: "boolean"
-      })
-      .option("format", {
-        alias: "f",
-        choices: ["notInFolder2"],
-        default: "notInFolder2",
-        describe: "Output format",
-        type: "string"
       })
       .help("h")
       .alias("h", "help")
