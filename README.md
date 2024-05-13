@@ -1,40 +1,52 @@
 # dirman
-[![Version](https://img.shields.io/npm/v/dirman.svg)](https://www.npmjs.com/package/dirman)
-![Prerequisite](https://img.shields.io/badge/node-%3E%3D18.0.0-blue.svg)
-[![License: The Unlicense](https://img.shields.io/badge/License-The Unlicense-yellow.svg)](#)
 ![](./dirman.jpg)
-
-> A CLI tool for the specfic function of showing what folders one directory has the the other does not.
 
 **dirman** is a command-line tool designed to help you quickly identify which folders exist in one directory but not the other. That's it.
 
+**NOW WITH Features!:**
+
+- Compares files based on hash, size, or basename.
+- Flexible matching conditions: require all files to match (default) or any file.
+
 ### Installation
 
-Prerequisites: Node.js v18 or later. To install dirman globally, run:
+Node.js v18 or later. To install dirman globally: `yarn global add dirman`
+
+**Usage:**
 
 ```bash
-yarn global add dirman
+dirman <directory1> <directory2> [options]
 ```
-
-### Usage
-
-```bash
-Usage: dirman <folder1> <folder2> [options]
-```
-
-**Arguments:**
-
-* `<folder1>`: Path to the first directory.
-* `<folder2>`: Path to the second directory.
 
 **Options:**
 
-* `-h, --help`: Display help information.
-* `-f, --format`: Output format. Currently supports only `notInFolder2`. (Default: `notInFolder2`)
+| Option | Alias | Description | Default | Type |
+|---|---|---|---|---|
+| `-h`, `--help` |  | Shows this help message. | | boolean |
+| `-c`, `--compare` |  | Comparison method (comma-separated for multiple). | `hash` | string (array) | 
+| `-m`, `--match` |  | Matching condition. | `all` | string |
 
-Comparison method is via file contents & xxhash3.
+**Comparison Methods:**
 
-## it me
+- `hash`: Compares file content based on xxhash3.
+- `size`: Compares file size in bytes.
+- `basename`: Compares file names (without path).
+
+**Match Conditions:**
+
+- `all`: All comparison methods must match.
+- `any`: Any comparison methods may match.
+
+
+**Example:**
+
+```bash
+dirman /path/to/folder1 /path/to/folder2 -c hash,size -m any
+```
+
+This will find any files in `/path/to/folder1` that either have a different hash or size compared to files in `/path/to/folder2`.
+
+### thank.
 
 👤 **ɛʟʟɨօȶ b  =^._.^= ∫ <elliot@email.gd>**
 
