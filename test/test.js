@@ -1,3 +1,4 @@
+import exec from "elliotisms/lib/exec.js"
 import assert from "node:assert"
 import { afterEach, beforeEach, describe, it, test } from "node:test"
 
@@ -65,6 +66,25 @@ describe("tests", async () => {
       .sort()
       .join("\n")
 
+    assert.strictEqual(stringOfOutput, stringOfPredicted)
+  })
+  it("Should work the same when instantiated through the CLI", async () => {
+    let {
+      commonFiles,
+      folderAPath,
+      folderBPath,
+      testParentFolder,
+      uniqueFilesA,
+      uniqueFilesB
+    } = await createTestData()
+    let { stderr, stdout } = await exec(
+      `node cli.js ${folderAPath} ${folderBPath}`
+    )
+    let stringOfOutput = stdout.trim()
+    let stringOfPredicted = uniqueFilesA
+      .map((item) => item.name)
+      .sort()
+      .join("\n")
     assert.strictEqual(stringOfOutput, stringOfPredicted)
   })
 })

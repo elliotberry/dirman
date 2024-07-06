@@ -44,6 +44,7 @@
   },
   "devDependencies": {
     "@stylistic/eslint-plugin-js": "^1.7.2",
+    "elliotisms": "^0.0.14",
     "eslint": "^9.0.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-import": "^2.29.1",

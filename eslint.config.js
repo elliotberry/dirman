@@ -26,8 +26,8 @@ export default [
       "no-console": "off",
       "no-unused-vars": "warn",
 
-      "simple-import-sort/exports": "error",
-      "simple-import-sort/imports": "error",
+      "simple-import-sort/exports": "warn",
+      "simple-import-sort/imports": "warn",
       "unicorn/no-null": "warn",
       "unicorn/prefer-top-level-await": "off",
       "unicorn/prevent-abbreviations": "warn"

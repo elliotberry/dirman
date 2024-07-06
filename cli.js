@@ -3,6 +3,7 @@ import yargs from "yargs"
 import { hideBin } from "yargs/helpers"
 
 import folderDiff from "./lib/folder-diff.js"
+import log from "./lib/log2.js"
 import notInFolder2 from "./lib/output/not-in-folder-2.js"
 
 const main = async () => {
@@ -39,11 +40,19 @@ const main = async () => {
           "Set match conditions. Available options: all, any. Default: all",
         type: "string"
       })
+      .option("verbose", {
+        alias: "v",
+        default: false,
+        describe: "Run with verbose logging",
+        type: "boolean"
+      })
       .help("h")
       .alias("h", "help")
     const argv = await parser.parse()
-    console.log(argv)
 
+    process.env.VERBOSE = argv.verbose
+
+    log("Starting folder diff")
     let { absoluteDirectory1, absoluteDirectory2, allFiles } = await folderDiff(
       argv._[0],
       argv._[1],
