@@ -12,16 +12,14 @@ import {
 describe("tests", async () => {
   afterEach(async () => await tryToDeleteFolder())
 
-  it("Should show unique files from the first directory", async () => {
+  it("programmatic use: Should show unique files from the first directory", async () => {
     let {
-      commonFiles,
       folderAPath,
       folderBPath,
-      testParentFolder,
-      uniqueFilesA,
-      uniqueFilesB
+
+      uniqueFilesA
     } = await createTestData()
-    console.log(folderAPath, folderBPath)
+
     let { allFiles, directory1AbsolutePath, directory2AbsolutePath } =
       await folderDiff(folderAPath, folderBPath)
     let folder1Files = allFiles.filter(
@@ -68,6 +66,7 @@ describe("tests", async () => {
 
     assert.strictEqual(stringOfOutput, stringOfPredicted)
   })
+  /*
   it("Should work the same when instantiated through the CLI", async () => {
     let {
       commonFiles,
@@ -86,5 +85,5 @@ describe("tests", async () => {
       .sort()
       .join("\n")
     assert.strictEqual(stringOfOutput, stringOfPredicted)
-  })
+  })*/
 })

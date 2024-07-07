@@ -17,7 +17,6 @@
   "license": "The Unlicense",
   "dependencies": {
     "fdir": "^6.1.1",
-    "release-it": "^17.4.1",
     "xxhash-addon": "^2.0.3",
     "yargs": "^17.7.2"
   },
@@ -43,6 +42,7 @@
     "embeddedLanguageFormatting": "auto"
   },
   "devDependencies": {
+    "release-it": "^17.4.1",
     "@stylistic/eslint-plugin-js": "^1.7.2",
     "elliotisms": "^0.0.14",
     "eslint": "^9.0.0",

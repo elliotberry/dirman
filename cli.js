@@ -3,7 +3,7 @@ import yargs from "yargs"
 import { hideBin } from "yargs/helpers"
 
 import folderDiff from "./lib/folder-diff.js"
-import log from "./lib/log2.js"
+import log from "./lib/log.js"
 import notInFolder2 from "./lib/output/not-in-folder-2.js"
 
 const main = async () => {
@@ -11,10 +11,12 @@ const main = async () => {
     const parser = await yargs(hideBin(process.argv))
       .usage("Usage: $0 <cmd> [options]") // usage string of application.
       .positional("directory1", {
+        demandOption: true,
         describe: "First directory path",
         type: "string"
       })
       .positional("directory2", {
+        demandOption: true,
         describe: "Second directory path",
         type: "string"
       })
@@ -27,6 +29,7 @@ const main = async () => {
         alias: "c",
         array: true, // Key aspect to allow multiple values
         choices: ["hash", "size", "basename"],
+        default: ["hash"],
         description:
           "Set operations for comparing files. Available options: hash, size, basename. Default: hash",
         type: "string"

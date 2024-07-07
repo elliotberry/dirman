@@ -1,10 +1,13 @@
+#!/usr/bin/env node
 import { randomBytes } from "node:crypto"
 import { promises as fs } from "node:fs"
 import path from "node:path"
 
-import __dirname from "../lib/__dirname.js"
+import __dirname from "../lib/dirname.js"
 
-const testParentFolder = path.join(__dirname, "test", "test-files")
+const testParentFolder = path.resolve(
+  path.join(__dirname, "test", "test-files")
+)
 const folderAPath = path.resolve(path.join(testParentFolder, "a"))
 const folderBPath = path.resolve(path.join(testParentFolder, "b"))
 
@@ -63,6 +66,16 @@ const createTestData = async () => {
     uniqueFilesB
   }
 }
+
+if (process.argv.join(" ").includes("generate")) {
+  createTestData()
+  console.log("Test data generated")
+}
+if (process.argv.join(" ").includes("remove")) {
+  tryToDeleteFolder()
+  console.log("Test data removed")
+}
+
 export {
   createRandomContent,
   createRandomFileName,
