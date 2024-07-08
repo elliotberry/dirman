@@ -1,7 +1,7 @@
 {
   "name": "dirman",
   "type": "module",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "author": "ɛʟʟɨօȶ b  =^._.^= ∫ <elliot@email.gd>",
   "description": "A CLI tool for the specfic function of showing what folders one directory has the the other does not.",
   "main": "index.js",
