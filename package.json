@@ -6,7 +6,8 @@
   "description": "A CLI tool for the specfic function of showing what folders one directory has the the other does not.",
   "main": "index.js",
   "scripts": {
-    "test": "node ./test/test.js"
+    "test": "node ./test/test.js",
+    "generate": "node ./test/test-functions.js generate"
   },
   "bin": {
     "dirman": "./cli.js"

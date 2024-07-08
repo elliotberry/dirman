@@ -1,4 +1,4 @@
-import exec from "elliotisms/lib/exec.js"
+
 import assert from "node:assert"
 import { afterEach, beforeEach, describe, it, test } from "node:test"
 
@@ -6,7 +6,8 @@ import folderDiff from "../lib/folder-diff.js"
 import {
   createTestData,
   testParentFolder,
-  tryToDeleteFolder
+  tryToDeleteFolder,
+  execa
 } from "./test-functions.js"
 
 describe("tests", async () => {
@@ -66,7 +67,7 @@ describe("tests", async () => {
 
     assert.strictEqual(stringOfOutput, stringOfPredicted)
   })
-  /*
+  
   it("Should work the same when instantiated through the CLI", async () => {
     let {
       commonFiles,
@@ -76,14 +77,15 @@ describe("tests", async () => {
       uniqueFilesA,
       uniqueFilesB
     } = await createTestData()
-    let { stderr, stdout } = await exec(
+    let stdout= await execa(
       `node cli.js ${folderAPath} ${folderBPath}`
     )
+    console.log(stdout)
     let stringOfOutput = stdout.trim()
     let stringOfPredicted = uniqueFilesA
       .map((item) => item.name)
       .sort()
       .join("\n")
     assert.strictEqual(stringOfOutput, stringOfPredicted)
-  })*/
+  })
 })

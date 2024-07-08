@@ -4,6 +4,18 @@ import { promises as fs } from "node:fs"
 import path from "node:path"
 
 import __dirname from "../lib/dirname.js"
+import { exec } from "node:child_process"
+
+const execa = (command) => {
+  return new Promise((resolve, reject) => {
+    exec(command, (error, stdout, stderr) => {
+      if (error || stderr) {
+        throw new Error(error || stderr)
+      }
+      resolve(stdout)
+    })
+  })
+}
 
 const testParentFolder = path.resolve(
   path.join(__dirname, "test", "test-files")
@@ -22,12 +34,9 @@ String.prototype.del = function (s) {
   return this.split(s).join("")
 }
 
-async function createFolderWithFiles(folderName, commonFiles, uniqueFiles) {
+async function createFolderWithFiles(folderName, files) {
   await fs.mkdir(folderName, { recursive: true })
-  for (const file of commonFiles) {
-    await fs.writeFile(`${folderName}/${file.name}`, file.content)
-  }
-  for (const file of uniqueFiles) {
+  for await (const file of files) {
     await fs.writeFile(`${folderName}/${file.name}`, file.content)
   }
 }
@@ -53,9 +62,10 @@ const createTestData = async () => {
   const uniqueFilesB = Array.from({ length: 5 }, function () {
     return createRandomFile("unique")
   })
-
-  await createFolderWithFiles(folderAPath, commonFiles, uniqueFilesA)
-  await createFolderWithFiles(folderBPath, commonFiles, uniqueFilesB)
+  let filesA = [...commonFiles, ...uniqueFilesA]
+  let filesB = [...commonFiles, ...uniqueFilesB]
+  await createFolderWithFiles(folderAPath, filesA)
+  await createFolderWithFiles(folderBPath, filesB)
 
   return {
     commonFiles,
@@ -83,5 +93,6 @@ export {
   folderAPath,
   folderBPath,
   testParentFolder,
-  tryToDeleteFolder
+  tryToDeleteFolder,
+  execa
 }

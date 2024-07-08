@@ -55,14 +55,15 @@ const main = async () => {
 
     process.env.VERBOSE = argv.verbose
 
-    log("Starting folder diff")
-    let { absoluteDirectory1, absoluteDirectory2, allFiles } = await folderDiff(
+    log("logging activated.")
+    let { directory1AbsolutePath, directory2AbsolutePath, allFiles } = await folderDiff(
       argv._[0],
       argv._[1],
       argv.compare,
       argv.match
     )
-    await notInFolder2(absoluteDirectory1, absoluteDirectory2, allFiles)
+
+    await notInFolder2(directory1AbsolutePath, directory2AbsolutePath, allFiles)
   } catch (error) {
     console.error(error.message)
   }
