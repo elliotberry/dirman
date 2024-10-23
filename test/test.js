@@ -10,6 +10,8 @@ import {
   execa
 } from "./test-functions.js"
 
+process.env.VERBOSE = "true"
+
 describe("tests", async () => {
   afterEach(async () => await tryToDeleteFolder())
 

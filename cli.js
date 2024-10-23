@@ -25,6 +25,7 @@ const main = async () => {
         describe: "Show help",
         type: "boolean"
       })
+
       .option("compare", {
         alias: "c",
         array: true, // Key aspect to allow multiple values
@@ -52,16 +53,10 @@ const main = async () => {
       .help("h")
       .alias("h", "help")
     const argv = await parser.parse()
-
     process.env.VERBOSE = argv.verbose
 
-    log("logging activated.")
-    let { directory1AbsolutePath, directory2AbsolutePath, allFiles } = await folderDiff(
-      argv._[0],
-      argv._[1],
-      argv.compare,
-      argv.match
-    )
+    let { allFiles, directory1AbsolutePath, directory2AbsolutePath } =
+      await folderDiff(argv._[0], argv._[1], argv.compare, argv.match)
 
     await notInFolder2(directory1AbsolutePath, directory2AbsolutePath, allFiles)
   } catch (error) {

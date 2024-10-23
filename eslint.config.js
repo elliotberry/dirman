@@ -1,4 +1,4 @@
-import perfectionistNatural from "eslint-plugin-perfectionist/configs/recommended-natural"
+import perfectionist from "eslint-plugin-perfectionist"
 import prettierConfig from "eslint-plugin-prettier/recommended"
 import is from "eslint-plugin-simple-import-sort"
 import eslintPluginUnicorn from "eslint-plugin-unicorn"
@@ -6,7 +6,6 @@ import eslintPluginUnicorn from "eslint-plugin-unicorn"
 export default [
   prettierConfig,
   eslintPluginUnicorn.configs["flat/recommended"],
-  perfectionistNatural,
 
   {
     files: ["**/*.js"],
@@ -15,7 +14,8 @@ export default [
       sourceType: "module"
     },
     plugins: {
-      "simple-import-sort": is
+      "simple-import-sort": is,
+      perfectionist
     },
 
     rules: {
