@@ -3,7 +3,6 @@ import yargs from "yargs"
 import { hideBin } from "yargs/helpers"
 
 import folderDiff from "./lib/folder-diff.js"
-import log from "./lib/log.js"
 import notInFolder2 from "./lib/output/not-in-folder-2.js"
 
 const main = async () => {

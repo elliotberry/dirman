@@ -4,8 +4,12 @@
   "version": "0.0.12",
   "author": "ɛʟʟɨօȶ b  =^._.^= ∫ <elliot@email.gd>",
   "description": "A CLI tool for the specfic function of showing what folders one directory has the the other does not.",
-  "main": "index.js",
+  "main": "./index.js",
+"repository": "https://github.com/elliotberry/dirman",
   "scripts": {
+  
+      "release": "release-it --ci",
+    
     "test": "node ./test/test.js",
     "generate": "node ./test/test-functions.js generate"
   },
