@@ -1,14 +1,8 @@
-
 import assert from "node:assert"
-import { afterEach, beforeEach, describe, it, test } from "node:test"
+import { afterEach, describe, it } from "node:test"
 
 import folderDiff from "../lib/folder-diff.js"
-import {
-  createTestData,
-  testParentFolder,
-  tryToDeleteFolder,
-  execa
-} from "./test-functions.js"
+import { createTestData, execa, tryToDeleteFolder } from "./test-functions.js"
 
 process.env.VERBOSE = "true"
 
@@ -23,8 +17,10 @@ describe("tests", async () => {
       uniqueFilesA
     } = await createTestData()
 
-    let { allFiles, directory1AbsolutePath, directory2AbsolutePath } =
-      await folderDiff(folderAPath, folderBPath)
+    let { allFiles, directory1AbsolutePath } = await folderDiff(
+      folderAPath,
+      folderBPath
+    )
     let folder1Files = allFiles.filter(
       (item) => item.parentDir === directory1AbsolutePath
     )
@@ -42,17 +38,12 @@ describe("tests", async () => {
     assert.strictEqual(stringOfOutput, stringOfPredicted)
   })
   it("Should show unique files from the second directory", async () => {
-    let {
-      commonFiles,
-      folderAPath,
-      folderBPath,
-      testParentFolder,
-      uniqueFilesA,
-      uniqueFilesB
-    } = await createTestData()
+    let { folderAPath, folderBPath, uniqueFilesB } = await createTestData()
 
-    let { allFiles, directory1AbsolutePath, directory2AbsolutePath } =
-      await folderDiff(folderAPath, folderBPath)
+    let { allFiles, directory2AbsolutePath } = await folderDiff(
+      folderAPath,
+      folderBPath
+    )
     let folder2Files = allFiles.filter(
       (item) => item.parentDir === directory2AbsolutePath
     )
@@ -69,19 +60,10 @@ describe("tests", async () => {
 
     assert.strictEqual(stringOfOutput, stringOfPredicted)
   })
-  
+
   it("Should work the same when instantiated through the CLI", async () => {
-    let {
-      commonFiles,
-      folderAPath,
-      folderBPath,
-      testParentFolder,
-      uniqueFilesA,
-      uniqueFilesB
-    } = await createTestData()
-    let stdout= await execa(
-      `node cli.js ${folderAPath} ${folderBPath}`
-    )
+    let { folderAPath, folderBPath, uniqueFilesA } = await createTestData()
+    let stdout = await execa(`node index.js ${folderAPath} ${folderBPath}`)
     console.log(stdout)
     let stringOfOutput = stdout.trim()
     let stringOfPredicted = uniqueFilesA
