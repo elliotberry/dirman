@@ -1,5 +1,5 @@
 import assert from "node:assert"
-import { afterEach, describe, it } from "node:test"
+import { afterEach, describe, test } from "node:test"
 
 import folderDiff from "../lib/folder-diff.js"
 import { createTestData, execa, tryToDeleteFolder } from "./test-functions.js"
@@ -9,7 +9,7 @@ process.env.VERBOSE = "true"
 describe("tests", async () => {
   afterEach(async () => await tryToDeleteFolder())
 
-  it("programmatic use: Should show unique files from the first directory", async () => {
+  test("programmatic use: Should show unique files from the first directory", async () => {
     let {
       folderAPath,
       folderBPath,
@@ -37,7 +37,7 @@ describe("tests", async () => {
 
     assert.strictEqual(stringOfOutput, stringOfPredicted)
   })
-  it("Should show unique files from the second directory", async () => {
+  test("Should show unique files from the second directory", async () => {
     let { folderAPath, folderBPath, uniqueFilesB } = await createTestData()
 
     let { allFiles, directory2AbsolutePath } = await folderDiff(
@@ -61,7 +61,7 @@ describe("tests", async () => {
     assert.strictEqual(stringOfOutput, stringOfPredicted)
   })
 
-  it("Should work the same when instantiated through the CLI", async () => {
+  test("Should work the same when instantiated through the CLI", async () => {
     let { folderAPath, folderBPath, uniqueFilesA } = await createTestData()
     let stdout = await execa(`node index.js ${folderAPath} ${folderBPath}`)
     console.log(stdout)
