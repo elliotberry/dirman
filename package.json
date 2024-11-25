@@ -45,12 +45,12 @@
     "embeddedLanguageFormatting": "auto"
   },
   "devDependencies": {
-    "@stylistic/eslint-plugin-js": "^2.9.0",
+    "@stylistic/eslint-plugin-js": "^2.10.0",
     "elliotisms": "^0.0.49",
     "eslint": "^9.13.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-import": "^2.31.0",
-    "eslint-plugin-n": "^17.11.1",
+    "eslint-plugin-n": "^17.12.0",
     "eslint-plugin-perfectionist": "^3.9.1",
     "eslint-plugin-prettier": "^5.2.1",
     "eslint-plugin-simple-import-sort": "^12.1.1",

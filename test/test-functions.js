@@ -1,10 +1,10 @@
 #!/usr/bin/env node
+import { exec } from "node:child_process"
 import { randomBytes } from "node:crypto"
 import { promises as fs } from "node:fs"
 import path from "node:path"
 
 import __dirname from "../lib/dirname.js"
-import { exec } from "node:child_process"
 
 const execa = (command) => {
   return new Promise((resolve, reject) => {
@@ -27,9 +27,12 @@ const createRandomFileName = (suffix = "") => {
   let suffixText = suffix ? `${suffix}-` : ""
   return `${suffixText}${randomBytes(6).toString("hex")}.txt`
 }
-const createRandomContent = () => randomBytes(20).toString("hex")
-const createRandomFile = (suffix = "") => {
-  return { content: createRandomContent(), name: createRandomFileName(suffix) }
+const createRandomContent = (size = 20) => randomBytes(size).toString("hex")
+const createRandomFile = (suffix = "", size = 20) => {
+  return {
+    content: createRandomContent(size),
+    name: createRandomFileName(suffix)
+  }
 }
 
 String.prototype.del = function (s) {
@@ -43,7 +46,7 @@ async function createFolderWithFiles(folderName, files) {
   }
 }
 
-async function tryToDeleteFolder() {
+async function tryToDeleteTestParentFolder() {
   //delete test if exists
   try {
     await fs.rm(testParentFolder, { recursive: true })
@@ -54,14 +57,12 @@ async function tryToDeleteFolder() {
 
 const createSomeFiles = async (numberOfFiles, suffix = "") => {
   return Array.from({ length: numberOfFiles }, function () {
-    return createRandomFile(suffix)
+    return createRandomFile(suffix, 200)
   })
 }
 
-
-
 const createTestData = async () => {
-  await tryToDeleteFolder(testParentFolder)
+  await tryToDeleteTestParentFolder(testParentFolder)
   await fs.mkdir(testParentFolder, { recursive: true })
   const commonFiles = Array.from({ length: 5 }, function () {
     return createRandomFile("common")
@@ -88,17 +89,26 @@ if (process.argv.join(" ").includes("generate")) {
   console.log("Test data generated")
 }
 if (process.argv.join(" ").includes("remove")) {
-  tryToDeleteFolder()
+  tryToDeleteTestParentFolder()
   console.log("Test data removed")
 }
-
+const makeParentDirectory = async () => {
+  await fs.mkdir(testParentFolder, { recursive: true })
+}
+const createOneFile = async (suffix = "") => {
+  const file = createRandomFile(suffix, 500_000)
+  await fs.writeFile(`${testParentFolder}/${file.name}`, file.content)
+  return path.resolve(`${testParentFolder}/${file.name}`)
+}
 export {
+  createOneFile,
   createRandomContent,
   createRandomFileName,
   createTestData,
+  execa,
   folderAPath,
   folderBPath,
+  makeParentDirectory,
   testParentFolder,
-  tryToDeleteFolder,
-  execa
+  tryToDeleteTestParentFolder
 }

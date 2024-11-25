@@ -2,12 +2,18 @@ import assert from "node:assert"
 import { afterEach, describe, test } from "node:test"
 
 import folderDiff from "../lib/folder-diff.js"
-import { createTestData, execa, tryToDeleteFolder } from "./test-functions.js"
+import {
+  createOneFile,
+  createTestData,
+  execa,
+  makeParentDirectory,
+  tryToDeleteTestParentFolder
+} from "./test-functions.js"
 
 process.env.VERBOSE = "true"
 
 describe("tests", async () => {
-  afterEach(async () => await tryToDeleteFolder())
+  afterEach(async () => await tryToDeleteTestParentFolder())
 
   test("programmatic use: Should show unique files from the first directory", async () => {
     let {
@@ -72,4 +78,5 @@ describe("tests", async () => {
       .join("\n")
     assert.strictEqual(stringOfOutput, stringOfPredicted)
   })
+  
 })
