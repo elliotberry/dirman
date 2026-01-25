@@ -19,9 +19,9 @@
   },
   "license": "The Unlicense",
   "dependencies": {
-    "fdir": "^6.4.2",
+    "fdir": "^6.5.0",
     "xxhash-addon": "^2.0.3",
-    "yargs": "^17.7.2"
+    "yargs": "^18.0.0"
   },
   "prettier": {
     "arrowParens": "always",
@@ -45,18 +45,18 @@
     "embeddedLanguageFormatting": "auto"
   },
   "devDependencies": {
-    "@stylistic/eslint-plugin-js": "^2.11.0",
-    "elliotisms": "^0.0.51",
-    "eslint": "^9.15.0",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-import": "^2.31.0",
-    "eslint-plugin-n": "^17.14.0",
-    "eslint-plugin-perfectionist": "^4.1.2",
-    "eslint-plugin-prettier": "^5.2.1",
+    "@stylistic/eslint-plugin-js": "^4.4.1",
+    "elliotisms": "^0.0.57",
+    "eslint": "^9.39.2",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-n": "^17.23.2",
+    "eslint-plugin-perfectionist": "^5.4.0",
+    "eslint-plugin-prettier": "^5.5.5",
     "eslint-plugin-simple-import-sort": "^12.1.1",
-    "eslint-plugin-sonarjs": "^2.0.4",
-    "eslint-plugin-unicorn": "^56.0.1",
-    "prettier": "^3.3.3",
-    "release-it": "^17.10.0"
+    "eslint-plugin-sonarjs": "^3.0.5",
+    "eslint-plugin-unicorn": "^62.0.0",
+    "prettier": "^3.8.1",
+    "release-it": "^19.2.4"
   }
 }
