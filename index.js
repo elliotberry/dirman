@@ -66,11 +66,8 @@ const main = async () => {
     let { allFiles, directory1AbsolutePath, directory2AbsolutePath } =
       await folderDiff(argv._[0], argv._[1], argv.compare, argv.match, spinner)
 
-    if (spinner) {
-      spinner.text = "Preparing output..."
-    }
-    await notInFolder2(directory1AbsolutePath, directory2AbsolutePath, allFiles)
     spinner?.succeed("Finished directory comparison.")
+    await notInFolder2(directory1AbsolutePath, directory2AbsolutePath, allFiles)
   } catch (error) {
     spinner?.failed("Directory comparison failed.")
     console.error(error.message)
