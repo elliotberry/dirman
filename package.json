@@ -19,7 +19,7 @@
   },
   "license": "The Unlicense",
   "dependencies": {
-    "@topcli/spinner": "^4.0.0",
+    "@topcli/spinner": "^4.2.1",
     "fdir": "^6.5.0",
     "xxhash-addon": "^2.0.3",
     "yargs": "^18.0.0"
@@ -48,15 +48,15 @@
   "devDependencies": {
     "@stylistic/eslint-plugin-js": "^4.4.1",
     "elliotisms": "^0.0.57",
-    "eslint": "^9.39.2",
+    "eslint": "^10.0.2",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-import": "^2.32.0",
-    "eslint-plugin-n": "^17.23.2",
-    "eslint-plugin-perfectionist": "^5.4.0",
+    "eslint-plugin-n": "^17.24.0",
+    "eslint-plugin-perfectionist": "^5.6.0",
     "eslint-plugin-prettier": "^5.5.5",
     "eslint-plugin-simple-import-sort": "^12.1.1",
-    "eslint-plugin-sonarjs": "^3.0.5",
-    "eslint-plugin-unicorn": "^62.0.0",
+    "eslint-plugin-sonarjs": "^4.0.0",
+    "eslint-plugin-unicorn": "^63.0.0",
     "prettier": "^3.8.1",
     "release-it": "^19.2.4"
   }
