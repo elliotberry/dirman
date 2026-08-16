@@ -1,11 +1,23 @@
 {
   "name": "dirman",
   "type": "module",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": "ɛʟʟɨօȶ b  =^._.^= ∫ <elliot@email.gd>",
-  "description": "A CLI tool for the specfic function of showing what folders one directory has the the other does not.",
+  "description": "A CLI tool for showing which files one directory has that the other does not.",
   "main": "./index.js",
   "repository": "https://github.com/elliotberry/dirman",
+  "files": [
+    "index.js",
+    "lib"
+  ],
+  "keywords": [
+    "cli",
+    "directory",
+    "diff",
+    "compare",
+    "files",
+    "hash"
+  ],
   "scripts": {
     "release": "release-it --ci",
     "test": "node ./test/test.js",
@@ -21,8 +33,8 @@
   "dependencies": {
     "@topcli/spinner": "^4.2.1",
     "fdir": "^6.5.0",
-    "xxhash-addon": "^2.0.3",
-    "yargs": "^18.0.0"
+    "xxhash-addon": "^2.1.0",
+    "yargs": "^18.1.0"
   },
   "prettier": {
     "arrowParens": "always",
@@ -46,18 +58,15 @@
     "embeddedLanguageFormatting": "auto"
   },
   "devDependencies": {
-    "@stylistic/eslint-plugin-js": "^4.4.1",
-    "elliotisms": "^0.0.57",
-    "eslint": "^10.0.2",
+    "eslint": "^10.8.1",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-import": "^2.32.0",
-    "eslint-plugin-n": "^17.24.0",
-    "eslint-plugin-perfectionist": "^5.6.0",
-    "eslint-plugin-prettier": "^5.5.5",
-    "eslint-plugin-simple-import-sort": "^12.1.1",
-    "eslint-plugin-sonarjs": "^4.0.0",
-    "eslint-plugin-unicorn": "^63.0.0",
-    "prettier": "^3.8.1",
+    "eslint-plugin-perfectionist": "^5.10.1",
+    "eslint-plugin-prettier": "^5.5.6",
+    "eslint-plugin-simple-import-sort": "^14.0.0",
+    "eslint-plugin-sonarjs": "^4.2.0",
+    "eslint-plugin-unicorn": "^73.0.0",
+    "prettier": "^3.9.6",
     "release-it": "^19.2.4"
   }
 }
