@@ -65,9 +65,9 @@ async function tryToDeleteTestParentFolder() {
   }
 }
 
-const createSomeFiles = async (numberOfFiles, suffix = "") => {
-  return Array.from({ length: numberOfFiles }, function () {
-    return createRandomFile(suffix, 200)
+const createSomeFiles = async () => {
+  return Array.from({ length: 5 }, function () {
+    return createRandomFile("unique", 200)
   })
 }
 
@@ -77,8 +77,8 @@ const createTestData = async () => {
   const commonFiles = Array.from({ length: 5 }, function () {
     return createRandomFile("common")
   })
-  const uniqueFilesA = await createSomeFiles(5, "unique")
-  const uniqueFilesB = await createSomeFiles(5, "unique")
+  const uniqueFilesA = await createSomeFiles()
+  const uniqueFilesB = await createSomeFiles()
   const filesA = [...commonFiles, ...uniqueFilesA]
   const filesB = [...commonFiles, ...uniqueFilesB]
   await writeTree(folderAPath, filesA)

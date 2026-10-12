@@ -27,7 +27,7 @@
     "dirman": "./index.js"
   },
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=22.12.0"
   },
   "license": "The Unlicense",
   "dependencies": {

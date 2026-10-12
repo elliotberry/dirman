@@ -6,7 +6,7 @@ Use case: comparing versions of folder archives to see what is unique.
 
 ## Install
 
-Node.js v18 or later.
+Node.js v22.12 or later.
 
 ```bash
 npm install -g dirman

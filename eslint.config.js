@@ -7,7 +7,7 @@ import eslintPluginUnicorn from "eslint-plugin-unicorn"
 
 export default [
   prettierConfig,
-  eslintPluginUnicorn.configs["flat/recommended"],
+  eslintPluginUnicorn.configs.recommended,
   sonarjs.configs.recommended,
   importPlugin.flatConfigs.recommended,
 
